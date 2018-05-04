@@ -26,11 +26,14 @@ $(document).ready(function(){
 
 		event.preventDefault();
 
-		searchText = searchId.text();
-		numRecord = numRecordsId.text();
-		startYear = startYearId.text();
-		endYear = endYearId.text();
-		var queryURL = "https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=8a157db08bd34988b2104282b0c41690&q=" + searchText + "&begin_date=" + startYear + "0101&end_date=" + endYear + "1231&page=" + numRecord;
+		searchText = searchId.val().trim();
+		console.log(searchText)
+		numRecord = numRecordsId.val().trim();
+		startYear = startYearId.val().trim();
+		endYear = endYearId.val().trim();
+		var queryURL = "https://api.nytimes.com/svc/search/v2/articlesearch.json?q=" + searchText + "?begin_date=" + startYear + "?end_date=" + endYear + "?page=" + numRecord + "&api-key=8a157db08bd34988b2104282b0c41690";
+		
+		console.log(queryURL);
 
 		$.ajax({
 			url: queryURL,
