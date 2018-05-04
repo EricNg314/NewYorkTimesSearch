@@ -1,64 +1,47 @@
-var searchId = $('#searchTerm');
+$(document).ready(function(){ 
 
-var numRecordsId = $('#numberOfRecords');
+	var searchId = $('#searchTerm');
 
-var startYearId = $('#startYear');
+	var numRecordsId = $('#numberOfRecords');
 
-var endYearId = $('#endYear');
+	var startYearId = $('#startYear');
 
-var searchBtnId = $('#search');
+	var endYearId = $('#endYear');
 
-var clearBtnId = $('#clear');
+	var searchBtnId = $('#search');
 
-
-var searchText = '';
-
-var numRecord = 0;
-
-var startYear = 0;
-
-var endYear = 0;
+	var clearBtnId = $('#clear');
 
 
-$('#' + searchBtnId).click(function(){
-	searchText = searchId.text();
-	numRecord = numRecordsId.text();
-	startYear = startYearId.text();
-	endYear = endYearId.text();
-	var queryURL = "https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=8a157db08bd34988b2104282b0c41690&q=" + searchText + "&begin_date=" + startYear + "0101&end_date=" + endYear + "1231&page=" + numRecord;
-})
+	var searchText = '';
 
-//https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=8a157db08bd34988b2104282b0c41690&q=taco&begin_date=20160501&end_date=20180501&page=1
+	var numRecord = 0;
 
-//#article (id where you append articles to)
+	var startYear = 0;
 
-// var url = "https://api.nytimes.com/svc/search/v2/articlesearch.json";
-// url += '?' + $.param({
-//   'api-key': "8a157db08bd34988b2104282b0c41690",
-//   'q': "taco",
-//   'begin_date': "20160501",
-//   'end_date': "20180501",
-//   'page': 1
-// });
-// $.ajax({
-//   url: url,
-//   method: 'GET',
-// }).done(function(result) {
-//   console.log(url)	
-//   console.log(result);
-// }).fail(function(err) {
-//   throw err;
-// });
+	var endYear = 0;
 
 
-$.ajax({
-	url: queryURL,
-	method: "GET"
-}).then(function(response){
+	searchBtnId.click(function(){
 
-console.log(response)
+		event.preventDefault();
+
+		searchText = searchId.text();
+		numRecord = numRecordsId.text();
+		startYear = startYearId.text();
+		endYear = endYearId.text();
+		var queryURL = "https://api.nytimes.com/svc/search/v2/articlesearch.json?api-key=8a157db08bd34988b2104282b0c41690&q=" + searchText + "&begin_date=" + startYear + "0101&end_date=" + endYear + "1231&page=" + numRecord;
+
+		$.ajax({
+			url: queryURL,
+			method: "GET"
+			}).then(function(response){
+			console.log(response)
+		})
+	})
 
 })
+
 
 
 
