@@ -39,7 +39,36 @@ $(document).ready(function(){
 			url: queryURL,
 			method: "GET"
 			}).then(function(response){
-			console.log(response)
+			//console.log(response)
+			var articleBody = $('#article')
+
+			for(var i=0; i<numRecord; i++){
+
+				var titleDiv = $('<h4>')
+				var articleTitle = response.response.docs[i].headline.main;
+				//console.log(articleTitle)
+
+				titleDiv.text(articleTitle);
+
+				var authorDiv = $('<h5>')
+				var articleAuthor = response.response.docs[i].byline.original;
+				//console.log(articleAuthor)
+
+				authorDiv.text(articleAuthor);
+
+				var dateDiv = $('<p>')
+				var articleDate = response.response.docs[i].pub_date;
+				//console.log(articleDate)
+
+				dateDiv.text(articleDate);
+
+				articleBody.append(titleDiv, authorDiv, dateDiv);
+
+			}
+
+				
+
+
 		})
 	})
 
